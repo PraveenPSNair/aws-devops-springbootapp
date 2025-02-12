@@ -9,7 +9,7 @@ phases:
       # update below 
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 307946672120.dkr.ecr.ap-south-1.amazonaws.com
       - # Replace with this to your repository URI
-      - REPOSITORY_URI=307946672120.dkr.ecr.ap-south-1.amazonaws.com/prod-repo
+      - REPOSITORY_URI=307946672120.dkr.ecr.ap-south-1.amazonaws.com/springbootapp
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
