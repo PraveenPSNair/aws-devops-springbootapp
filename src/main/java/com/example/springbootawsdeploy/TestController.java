@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/demo")
 public class TestController {
+
     @GetMapping("/data")
     public String getData() {
-        return "First message from AWS Ecs";
+        System.out.println("Request received for /demo/data");
+        return "First message from AWS ECS";
     }
 
     @GetMapping("/message")
     public String getMessage() {
-        return "Second message from AWS Ecs";
+        System.out.println("Request received for /demo/message");
+        return "Second message from AWS ECS";
     }
 }
