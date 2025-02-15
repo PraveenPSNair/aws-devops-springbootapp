@@ -27,7 +27,7 @@ phases:
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
       - echo "Initializing Terraform..."
       - terraform init
-      - echo "Planning Terraform changes..."
+     
             
   post_build:
     commands:
@@ -42,6 +42,8 @@ phases:
       - echo $DOCKER_CONTAINER_NAME
       - echo printing imagedefinitions.json
       - cat imagedefinitions.json
+      - echo "Applying Terraform changes..."
+      - terraform apply --auto-approve
 artifacts:
   files:
     - imagedefinitions.json
