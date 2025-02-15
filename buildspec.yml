@@ -11,6 +11,12 @@ phases:
       - # Replace with this to your repository URI
       - REPOSITORY_URI=307946672120.dkr.ecr.ap-south-1.amazonaws.com/my-ecr
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo "Installing Terraform..."
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - sudo apt-get update && sudo apt-get install terraform
+      - terraform --version
+      
   build:
     commands:
       - echo Build started on `date`
@@ -19,6 +25,10 @@ phases:
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo "Initializing Terraform..."
+      - terraform init
+      - echo "Planning Terraform changes..."
+            
   post_build:
     commands:
       - echo Build completed on `date`
