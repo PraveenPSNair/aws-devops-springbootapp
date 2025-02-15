@@ -12,9 +12,9 @@ phases:
       - REPOSITORY_URI=307946672120.dkr.ecr.ap-south-1.amazonaws.com/my-ecr
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - echo "Installing Terraform..."
-      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-      - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      - sudo apt-get update && sudo apt-get install terraform
+      - curl -o terraform.zip https://releases.hashicorp.com/terraform/1.6.0/terraform_1.6.0_linux_amd64.zip
+      - unzip terraform.zip
+      - mv terraform /usr/local/bin/
       - terraform --version
       
   build:
