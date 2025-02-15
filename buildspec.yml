@@ -1,4 +1,9 @@
 version: 0.2
+env:
+  secrets-manager:
+    AWS_ACCESS_KEY_ID: "my-access-key-secret"
+    AWS_SECRET_ACCESS_KEY: "my-secret-key-secret"
+
 phases:
   pre_build:
     commands:
