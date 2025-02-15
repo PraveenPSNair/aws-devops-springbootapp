@@ -11,7 +11,7 @@ public class TestController {
     @GetMapping("/data")
     public String getData() {
         System.out.println("Request received for /demo/data");
-        return "First message from AWS ECS";
+        return "This is my AWS Certification project in Edureka!";
     }
 
     @GetMapping("/message")
