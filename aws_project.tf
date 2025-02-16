@@ -1,5 +1,4 @@
 #AWS Project
-
 # Fetch latest image from ECR
 
 data "aws_ecr_repository" "app_repo" {
