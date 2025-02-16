@@ -48,7 +48,8 @@ resource "aws_ecs_task_definition" "app_task" {
   container_definitions = jsonencode([
     {
       name      = "spring-demo-ecr"
-      image = "${data.aws_ecr_repository.app_repo.repository_url}:${coalesce(data.aws_ecr_image.latest.image_tag, "latest")}"
+      #image = "${data.aws_ecr_repository.app_repo.repository_url}:${coalesce(data.aws_ecr_image.latest.image_tag, "latest")}"
+      image     = "${data.aws_ecr_repository.app_repo.repository_url}:latest"
       memory    = 512
       cpu       = 256
       essential = true
