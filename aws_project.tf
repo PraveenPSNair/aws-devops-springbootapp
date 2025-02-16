@@ -9,7 +9,7 @@ data "aws_ecr_image" "latest" {
   repository_name = data.aws_ecr_repository.app_repo.name
   image_tag       = "latest"
 }
-
+ image     = "${data.aws_ecr_repository.app_repo.repository_url}@${data.aws_ecr_image.latest_image.image_digest}"
 # Create ECS Cluster
 resource "aws_ecs_cluster" "app_cluster" {
   name = "ecs-fargate-cluster"
@@ -48,9 +48,9 @@ resource "aws_ecs_task_definition" "app_task" {
   container_definitions = jsonencode([
     {
       name      = "spring-demo-ecr"
-      image     = "${data.aws_ecr_repository.app_repo.repository_url}@${data.aws_ecr_image.latest_image.image_digest}"
+      #image     = "${data.aws_ecr_repository.app_repo.repository_url}@${data.aws_ecr_image.latest_image.image_digest}"
       #image = "${data.aws_ecr_repository.app_repo.repository_url}:${coalesce(data.aws_ecr_image.latest.image_tag, "latest")}"
-      #image     = "${data.aws_ecr_repository.app_repo.repository_url}:latest"
+      image     = "${data.aws_ecr_repository.app_repo.repository_url}:latest"
       memory    = 512
       cpu       = 256
       essential = true
