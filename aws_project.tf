@@ -14,10 +14,10 @@ resource "aws_ecs_cluster" "app_cluster" {
 }
 
 # Create ECS Cluster in secondary region 
-resource "aws_ecs_cluster" "app_cluster" {
-  name = "ecs-fargate-cluster"
+resource "aws_ecs_cluster" "app_cluster_secondary" {
   provider = aws.secondary
-}
+  name = "ecs-fargate-cluster"
+  }
 
 # IAM Role for ECS Task Execution
 resource "aws_iam_role" "ecs_task_execution_role" {
