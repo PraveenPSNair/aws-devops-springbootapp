@@ -110,7 +110,7 @@ resource "aws_ecs_service" "app_service" {
 resource "aws_ecs_service" "app_service_secondary" {
   provider        = aws.secondary
   name            = "app-service-secondary"
-  cluster         = aws_ecs_cluster.app_clusterr_secondary.id
+  cluster         = aws_ecs_cluster.app_cluster_secondary.id
   task_definition = aws_ecs_task_definition.app_task_secondary.arn
   desired_count   = 1
   launch_type     = "FARGATE"
