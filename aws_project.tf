@@ -109,9 +109,9 @@ resource "aws_ecs_service" "app_service" {
 # Create ECS Service with 1 Fargate Task Secondary region 
 resource "aws_ecs_service" "app_service_secondary" {
   provider        = aws.secondary
-  name            = "app-service"
+  name            = "app-service-secondary"
   cluster         = aws_ecs_cluster.app_clusterr_secondary.id
-  task_definition = aws_ecs_task_definition.app_taskr_secondary.arn
+  task_definition = aws_ecs_task_definition.app_task_secondary.arn
   desired_count   = 1
   launch_type     = "FARGATE"
 
